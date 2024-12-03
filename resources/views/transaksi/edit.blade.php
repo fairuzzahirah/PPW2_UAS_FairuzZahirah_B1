@@ -1,4 +1,5 @@
-@extends('layouts') <!-- Pastikan directive ini berada di paling atas -->
+@extends('layouts')
+
 @section('content') 
     <h2>Edit Transaksi</h2>
     <div class="card">
@@ -15,33 +16,33 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action={{ route('transaksi.update', $transaksi->id) }}>
+            <form method="POST" action="{{ route('transaksi.update', $transaksi->id) }}">
                 @csrf
                 @method('PUT')
                 <div class="d-flex flex-column gap-4 mb-4">
                     <div class="form-group">
                         <label>Tanggal Pembelian</label>
-                        <input type="date" class="form-control" name="" value="{{ $transaksi-> }}" required>
+                        <input type="date" class="form-control" name="tanggal_pembelian" value="{{ $transaksi->tanggal_pembelian }}" required>
                     </div>
                     <div class="form-group">
                         <label>Harga Total</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
-                            <input type="number" class="form-control" name="" value="{{ $transaksi-> }}" disabled>
+                            <input type="number" class="form-control" name="total_harga" value="{{ $transaksi->total_harga }}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Bayar</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
-                            <input type="number" class="form-control" name="" value="{{ $transaksi-> }}" required>
+                            <input type="number" class="form-control" name="bayar" value="{{ $transaksi->bayar }}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Kembalian</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
-                            <input type="text" class="form-control" name="" value="{{ $transaksi-> }}" disabled>
+                            <input type="text" class="form-control" name="kembalian" value="{{ $transaksi->kembalian }}" disabled>
                         </div>
                     </div>
                 </div>
@@ -50,8 +51,7 @@
         </div>
     </div>
 
-
-{{--customjs--}}
+{{-- Custom JS --}}
 <script>
     $(document).ready(function() {
         function calculateKembalian() {
@@ -61,7 +61,7 @@
             $('input[name="kembalian"]').val(kembalian);
         }
 
-        $('input[name="bayar"]').on('', function() {
+        $('input[name="bayar"]').on('input', function() {
             calculateKembalian();
         });
     });
