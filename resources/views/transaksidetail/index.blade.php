@@ -1,4 +1,5 @@
-
+@extends('layouts') <!-- Pastikan directive ini berada di paling atas -->
+@section('content') 
     <h2>Data Detail Transaksi</h2>
     <div class="card">
         <div class="card-header bg-white">
@@ -31,4 +32,4 @@
             </table>
         </div>
     </div>
-
+@endsection
