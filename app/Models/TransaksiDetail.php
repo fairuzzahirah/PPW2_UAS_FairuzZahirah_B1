@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransaksiDetail extends Model
 {
-    use HasFactory
+    use HasFactory, SoftDeletes; // Menggunakan trait SoftDeletes
 
     protected $table = 'transaksi_detail';
 
-    $fillable = [
+    protected $fillable = [
         'id_transaksi',
         'nama_produk',
         'harga_satuan',
@@ -19,8 +20,9 @@ class TransaksiDetail extends Model
         'subtotal',
     ];
 
+    // Relasi ke Transaksi
     public function transaksi()
     {
-        return $this-belongsTo(Transaksi::class, 'id_transaksi', 'id');
+        return $this->belongsTo(Transaksi::class, 'id_transaksi', 'id');
     }
 }
